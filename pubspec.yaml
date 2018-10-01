@@ -13,8 +13,7 @@ environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
-  dio: 1.0.6
-  flutter_simple_dependency_injection: 0.0.5
+  cached_network_image: "^0.4.1"
   flutter:
     sdk: flutter
 

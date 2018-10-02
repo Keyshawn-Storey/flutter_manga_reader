@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_manga_reader/data/models.dart';
+import 'package:flutter_manga_reader/widgets/MangaPreviewItem.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class MangaListView extends StatefulWidget {
   MangaListView({Key key, this.title}) : super(key: key);
@@ -44,22 +45,14 @@ class _MangaListViewState extends State<MangaListView> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: GridView.builder(
-          itemBuilder: (context, position) {
-            return Card(
-              child: Text(mangaList.manga[position].title),
-            );
-          },
-          itemCount: mangaList.manga.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        )
+      body: GridView.builder(
+        itemBuilder: (context, position) {
+          return MangaPreviewItem(manga: mangaList.manga[position]);
+        },
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, childAspectRatio: 0.6666),
+        itemCount: mangaList.manga.length,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _getList,
-        tooltip: 'Update',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

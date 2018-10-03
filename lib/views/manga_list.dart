@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_manga_reader/data/models.dart';
+import 'package:flutter_manga_reader/util/Constants.dart';
 import 'package:flutter_manga_reader/widgets/MangaPreviewItem.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class MangaListView extends StatefulWidget {
   MangaListView({Key key, this.title}) : super(key: key);
@@ -17,8 +17,8 @@ class MangaListView extends StatefulWidget {
 }
 
 class _MangaListViewState extends State<MangaListView> {
-  MangaList mangaList = MangaList.XZ();
-  var mangaURL = "https://www.mangaeden.com/api/list/0/?p=1&l=100";
+  MangaList mangaList = MangaList.New();
+  var mangaURL = Constants.MANGA_API + "list/0/?p=1&l=100";
 
   void _getList() {
     getMangaList().then((mangaList) => setState(() {
